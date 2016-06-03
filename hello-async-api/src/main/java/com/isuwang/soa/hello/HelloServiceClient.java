@@ -21,14 +21,14 @@ public class HelloServiceClient extends com.isuwang.soa.remoting.BaseServiceClie
     /**
      * @SoaAsyncFunction
      **/
-    public Future<String> sayHello(String name) throws SoaException {
+    public Future<String> sayHello(String name, long timeout) throws SoaException {
         initContext("sayHello");
 
         try {
             sayHello_args sayHello_args = new sayHello_args();
             sayHello_args.setName(name);
 
-            CompletableFuture<sayHello_result> resultFuture = (CompletableFuture) sendBaseAsync(sayHello_args, new sayHello_result(), new SayHello_argsSerializer(), new SayHello_resultSerializer());
+            CompletableFuture<sayHello_result> resultFuture = (CompletableFuture) sendBaseAsync(sayHello_args, new sayHello_result(), new SayHello_argsSerializer(), new SayHello_resultSerializer(), timeout);
             CompletableFuture<String> response = new CompletableFuture<>();
             resultFuture.whenComplete((sayHello_result, ex) -> {
                 if (sayHello_result != null) {
