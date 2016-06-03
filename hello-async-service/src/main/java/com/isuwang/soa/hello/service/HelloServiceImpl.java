@@ -28,8 +28,8 @@ public class HelloServiceImpl implements HelloService {
             }
 
             logger.info("---------result completed");
-//            result.complete("hello, " + name);
-            result.completeExceptionally(new SoaException("Test", "Test Complete With Exception"));
+            result.complete("hello, " + name);
+//            result.completeExceptionally(new SoaException("Test", "Test Complete With Exception"));
 
         }).start();
 
