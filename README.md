@@ -62,6 +62,7 @@ public Future<String> sayHello(String name) throws SoaException {
 简单来说，即构造一个封装了返回结果结构体的Future，并返回这个Future,此时工作线程已经返回，而组装数据、通知完成的过程，则交给另一个线程处理，工作线程不需要在此阻塞，得到结果才返回。
 
 #### 客户端
+客户端如常请求服务，并立即得到一个Future封装的结果，该结果可能还没有被写入值，但此时线程可以执行其他后续任务，直到需要使用结果时调用Future.get()方法，此时如果结果已经从服务器返回，则立即获得，否则阻塞至结果返回或超时。
 ```
 HelloServiceClient client = new HelloServiceClient();
 Future<String> result = client.sayHello("LiLei");
@@ -69,11 +70,21 @@ Future<String> result = client.sayHello("LiLei");
 //do other job
 System.out.println(result.get());
 ```
-* 客户端如常请求服务，并立即得到一个Future封装的结果，该结果可能还没有被写入值，但此时线程可以执行其他后续任务，直到需要使用结果时调用Future.get()方法，此时如果结果已经从服务器返回，则立即获得，否则阻塞至结果返回或超时；
-* 或者给Future添加一个回调方法，complete该Future的线程（或线程池）会执行该回调方法，客户端不需要在此阻塞。
+或者给Future添加一个回调方法，complete该Future的线程（或线程池）会执行该回调方法，客户端不需要在此阻塞。
+```   
+CompletableFuture<String> normalRequest = (CompletableFuture<String>) client.sayHello("Tomy", 15000l);
+normalRequest.whenComplete((str, ex) -> {
+     if (str != null) {
+         System.out.println(str);
+     } else {
+         ex.printStackTrace();
+     }
+});
+```
 
+### 优化以及关注点
 
-
-> 参考isuwang-soa使用：[isuwang-soa](https://github.com/isuwang/isuwang-soa)
-
-
+* 客户端可以自定义异步请求超时时间，时间到了如果服务端还没返回会自动抛超时异常(已完成)
+* 服务端异常可以传递到客户端(已完成)
+* 服务端completeExceptionally可以正确传递给客户端(已完成)
+* 各种资源的正确释放以及其他问题
