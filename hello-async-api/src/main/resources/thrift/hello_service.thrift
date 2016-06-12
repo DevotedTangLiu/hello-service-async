@@ -1,4 +1,4 @@
-namespace java com.isuwang.soa.hello.service
+namespace java com.isuwang.dapeng.hello.service
 
 /**
 * Hello Service

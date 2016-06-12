@@ -26,8 +26,8 @@
 
         <dependency>
             <groupId>com.isuwang</groupId>
-            <artifactId>isuwang-soa-spring</artifactId>
-            <version>1.0.0</version>
+            <artifactId>dapeng-spring</artifactId>
+            <version>1.1-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework</groupId>

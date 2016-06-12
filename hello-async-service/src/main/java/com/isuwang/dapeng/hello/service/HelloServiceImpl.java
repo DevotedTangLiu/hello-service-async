@@ -1,6 +1,6 @@
-package com.isuwang.soa.hello.service;
+package com.isuwang.dapeng.hello.service;
 
-import com.isuwang.soa.core.SoaException;
+import com.isuwang.dapeng.core.SoaException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -7,7 +7,7 @@
         http://soa-springtag.isuwang.com/schema/service
         http://soa-springtag.isuwang.com/schema/service/service.xsd">
 
-    <bean id="helloService" class="com.isuwang.soa.hello.service.HelloServiceImpl"/>
+    <bean id="helloService" class="com.isuwang.dapeng.hello.service.HelloServiceImpl"/>
     <soa:service ref="helloService"/>
 
 </beans>

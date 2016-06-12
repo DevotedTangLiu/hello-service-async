@@ -1,7 +1,7 @@
-package com.isuwang.soa.hello.test;
+package com.isuwang.dapeng.hello.test;
 
-import com.isuwang.soa.core.SoaException;
-import com.isuwang.soa.hello.HelloServiceClient;
+import com.isuwang.dapeng.core.SoaException;
+import com.isuwang.dapeng.hello.HelloServiceClient;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;

@@ -1,8 +1,9 @@
-package com.isuwang.soa.hello;
+package com.isuwang.dapeng.hello;
 
+import com.isuwang.dapeng.core.*;
+import com.isuwang.dapeng.hello.service.HelloService;
 import com.isuwang.org.apache.thrift.TException;
 import com.isuwang.org.apache.thrift.protocol.*;
-import com.isuwang.soa.core.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -205,7 +206,7 @@ public class HelloServiceCodec {
         }
     }
 
-    public static class sayHello<I extends com.isuwang.soa.hello.service.HelloService> extends SoaProcessFunction<I, sayHello_args, sayHello_result, SayHello_argsSerializer, SayHello_resultSerializer> {
+    public static class sayHello<I extends HelloService> extends SoaProcessFunction<I, sayHello_args, sayHello_result, SayHello_argsSerializer, SayHello_resultSerializer> {
         public sayHello() {
             super("sayHello", new SayHello_argsSerializer(), new SayHello_resultSerializer());
         }
@@ -378,7 +379,7 @@ public class HelloServiceCodec {
         }
     }
 
-    public static class getServiceMetadata<I extends com.isuwang.soa.hello.service.HelloService> extends SoaProcessFunction<I, getServiceMetadata_args, getServiceMetadata_result, GetServiceMetadata_argsSerializer, GetServiceMetadata_resultSerializer> {
+    public static class getServiceMetadata<I extends HelloService> extends SoaProcessFunction<I, getServiceMetadata_args, getServiceMetadata_result, GetServiceMetadata_argsSerializer, GetServiceMetadata_resultSerializer> {
         public getServiceMetadata() {
             super("getServiceMetadata", new GetServiceMetadata_argsSerializer(), new GetServiceMetadata_resultSerializer());
         }
@@ -387,7 +388,7 @@ public class HelloServiceCodec {
         public getServiceMetadata_result getResult(I iface, getServiceMetadata_args args) throws TException {
             getServiceMetadata_result result = new getServiceMetadata_result();
 
-            try (InputStreamReader isr = new InputStreamReader(HelloServiceCodec.class.getClassLoader().getResourceAsStream("com.isuwang.soa.hello.service.HelloService.xml"));
+            try (InputStreamReader isr = new InputStreamReader(HelloServiceCodec.class.getClassLoader().getResourceAsStream("com.isuwang.dapeng.hello.service.HelloService.xml"));
                  BufferedReader in = new BufferedReader(isr)) {
                 int len = 0;
                 StringBuilder str = new StringBuilder("");
@@ -423,13 +424,13 @@ public class HelloServiceCodec {
     }
 
     @SuppressWarnings("unchecked")
-    public static class Processor<I extends com.isuwang.soa.hello.service.HelloService> extends SoaBaseProcessor {
+    public static class Processor<I extends HelloService> extends SoaBaseProcessor {
         public Processor(I iface) {
             super(iface, getProcessMap(new java.util.HashMap<>()));
         }
 
         @SuppressWarnings("unchecked")
-        private static <I extends com.isuwang.soa.hello.service.HelloService> java.util.Map<String, SoaProcessFunction<I, ?, ?, ? extends TBeanSerializer<?>, ? extends TBeanSerializer<?>>> getProcessMap(java.util.Map<String, SoaProcessFunction<I, ?, ?, ? extends TBeanSerializer<?>, ? extends TBeanSerializer<?>>> processMap) {
+        private static <I extends HelloService> java.util.Map<String, SoaProcessFunction<I, ?, ?, ? extends TBeanSerializer<?>, ? extends TBeanSerializer<?>>> getProcessMap(java.util.Map<String, SoaProcessFunction<I, ?, ?, ? extends TBeanSerializer<?>, ? extends TBeanSerializer<?>>> processMap) {
 
             processMap.put("sayHello", new sayHello());
 

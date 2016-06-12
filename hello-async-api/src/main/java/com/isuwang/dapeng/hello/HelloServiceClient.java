@@ -1,16 +1,16 @@
-package com.isuwang.soa.hello;
+package com.isuwang.dapeng.hello;
 
+import com.isuwang.dapeng.core.SoaException;
+import com.isuwang.dapeng.hello.HelloServiceCodec.*;
 import com.isuwang.org.apache.thrift.TException;
-import com.isuwang.soa.core.SoaException;
-import com.isuwang.soa.hello.HelloServiceCodec.*;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
-public class HelloServiceClient extends com.isuwang.soa.remoting.BaseServiceClient {
+public class HelloServiceClient extends com.isuwang.dapeng.remoting.BaseServiceClient {
 
     public HelloServiceClient() {
-        super("com.isuwang.soa.hello.service.HelloService", "1.0.0");
+        super("com.isuwang.dapeng.hello.service.HelloService", "1.0.0");
     }
 
     @Override
